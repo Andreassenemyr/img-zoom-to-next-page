@@ -1,3 +1,9 @@
+## Animation using Framer motion - Tutorial
+
+Cool page transition effect of an image zooming into the next page.
+
+Followed [Youtube code tutorial](https://www.youtube.com/watch?v=3QrkCmsfewM)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
