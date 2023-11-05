@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { motion, useTransform, useViewportScroll } from 'framer-motion'
+import React, { useEffect, useState } from "react";
+import { motion, useTransform, useScroll } from "framer-motion";
 //Components
-import ScrollForMore from '../components/scrollForMore'
+import ScrollForMore from "../components/scrollForMore";
 //Ease
 
-const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] }
+const transition = { duration: 1.4, ease: [0.6, 0.01, 0.05, 0.9] };
 
 const firstName = {
   animate: {
@@ -14,7 +14,7 @@ const firstName = {
       staggerDirection: -1,
     },
   },
-}
+};
 
 const lastName = {
   animate: {
@@ -24,7 +24,7 @@ const lastName = {
       staggerDirection: 1,
     },
   },
-}
+};
 
 const letter = {
   initial: {
@@ -36,33 +36,33 @@ const letter = {
       ...transition,
     },
   },
-}
+};
 
 const Model = ({ imageDetails }) => {
-  const { scrollYProgress } = useViewportScroll()
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  const [canScroll, setCanScroll] = useState(false)
+  const [canScroll, setCanScroll] = useState(false);
 
   useEffect(() => {
     if (!canScroll) {
-      document.querySelector('body').classList.add('no-scroll')
+      document.querySelector("body").classList.add("no-scroll");
     } else {
-      document.querySelector('body').classList.remove('no-scroll')
+      document.querySelector("body").classList.remove("no-scroll");
     }
-  }, [canScroll])
+  }, [canScroll]);
 
   return (
     <motion.div
-      className='single'
-      initial='initial'
-      animate='animate'
-      exit='exit'
+      className="single"
+      initial="initial"
+      animate="animate"
+      exit="exit"
       onAnimationComplete={() => setCanScroll(true)}
     >
-      <div className='container fluid'>
-        <div className='row center top-row'>
-          <div className='top'>
+      <div className="container fluid">
+        <div className="row center top-row">
+          <div className="top">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{
@@ -70,16 +70,16 @@ const Model = ({ imageDetails }) => {
                 y: 0,
                 transition: { delay: 1.2, ...transition },
               }}
-              className='details'
+              className="details"
             >
-              <div className='location'>
+              <div className="location">
                 <span>28.538336</span>
                 <span>-81.379234</span>
               </div>
-              <div className='mua'>MUA: @mylifeascrystall</div>
+              <div className="mua">MUA: @mylifeascrystall</div>
             </motion.div>
-            <motion.div className='model'>
-              <motion.span variants={firstName} className='first'>
+            <motion.div className="model">
+              <motion.span variants={firstName} className="first">
                 <motion.span variants={letter}>Y</motion.span>
                 <motion.span variants={letter}>a</motion.span>
                 <motion.span variants={letter}>s</motion.span>
@@ -88,7 +88,7 @@ const Model = ({ imageDetails }) => {
                 <motion.span variants={letter}>e</motion.span>
                 <motion.span variants={letter}>n</motion.span>
               </motion.span>
-              <motion.span variants={lastName} className='last'>
+              <motion.span variants={lastName} className="last">
                 <motion.span variants={letter}>T</motion.span>
                 <motion.span variants={letter}>a</motion.span>
                 <motion.span variants={letter}>r</motion.span>
@@ -98,24 +98,24 @@ const Model = ({ imageDetails }) => {
             </motion.div>
           </div>
         </div>
-        <div className='row bottom-row'>
-          <div className='bottom'>
-            <div className='image-container-single'>
+        <div className="row bottom-row">
+          <div className="bottom">
+            <div className="image-container-single">
               <motion.div
                 initial={{
-                  y: '-50%',
+                  y: "-50%",
                   width: imageDetails.width,
                   height: imageDetails.height,
                 }}
                 animate={{
                   y: 0,
-                  width: '100%',
+                  width: "100%",
                   height: window.innerWidth > 1440 ? 800 : 400,
                   transition: { delay: 0.2, ...transition },
                 }}
-                className='thumbnail-single'
+                className="thumbnail-single"
               >
-                <div className='frame-single'>
+                <div className="frame-single">
                   <motion.img
                     style={{ scale: scale }}
                     initial={{ scale: 1.1 }}
@@ -123,8 +123,8 @@ const Model = ({ imageDetails }) => {
                       transition: { delay: 0.2, ...transition },
                       y: window.innerWidth > 1440 ? -1200 : -600,
                     }}
-                    src={require('../images/yasmeen.webp')}
-                    alt='Yasmeen Tariq'
+                    src={require("../images/yasmeen.webp")}
+                    alt="Yasmeen Tariq"
                   />
                 </div>
               </motion.div>
@@ -133,10 +133,10 @@ const Model = ({ imageDetails }) => {
           <ScrollForMore />
         </div>
       </div>
-      <div className='detailed-information'>
-        <div className='container'>
-          <div className='row'>
-            <h2 className='title'>
+      <div className="detailed-information">
+        <div className="container">
+          <div className="row">
+            <h2 className="title">
               The insiration behind the artwork & <br /> what it means.
             </h2>
             <p>
@@ -157,7 +157,7 @@ const Model = ({ imageDetails }) => {
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Model
+export default Model;
